@@ -63,7 +63,7 @@ const MainLayout: React.FC = () => {
         <div className="h-20 flex items-center px-6 border-b border-slate-800">
           <div className="flex items-center gap-3">
              <img 
-                 src="\src\assets\NEU Logo.png"
+                 src="/NEU Logo.svg"
                  alt="NEU Logo" 
                  className="w-8 h-8 object-contain" 
                  />
