@@ -39,19 +39,31 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         let role: Role = 'student'; // Default security level
         let isBlocked = false;
 
+        // List of emails that should automatically be granted admin rights
+        const adminEmails = ['ramiljr.deocariza@neu.edu.ph'];
+
         if (userSnap.exists()) {
           // Returning User: Grab their real data from Firestore
           const data = userSnap.data();
           role = data.role as Role || 'student';
           isBlocked = data.isBlocked || false;
+
+          // Upgrade existing user to admin if their email is in the admin list
+          if (firebaseUser.email && adminEmails.includes(firebaseUser.email) && role !== 'admin') {
+            role = 'admin';
+            await setDoc(userRef, { role: 'admin', isMaintainer: true }, { merge: true });
+          }
         } else {
+          const isAdmin = firebaseUser.email ? adminEmails.includes(firebaseUser.email) : false;
+          role = isAdmin ? 'admin' : 'student';
+
           // First Time Login: Create their profile in the database!
           await setDoc(userRef, {
             name: firebaseUser.displayName || 'NEU User',
             email: firebaseUser.email,
-            role: 'student', // Automatically make new users students
+            role: role,
             isBlocked: false,
-            isMaintainer: false,
+            isMaintainer: isAdmin,
             createdAt: new Date().toISOString()
           });
         }
