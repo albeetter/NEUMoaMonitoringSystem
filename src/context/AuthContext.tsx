@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         let isBlocked = false;
 
         // List of emails that should automatically be granted admin rights
-        const adminEmails = ['ramiljr.deocariza@neu.edu.ph'];
+        const adminEmails = ['ramiljr.deocariza@neu.edu.ph', 'jcesperanza@neu.edu.ph'];
 
         if (userSnap.exists()) {
           // Returning User: Grab their real data from Firestore
