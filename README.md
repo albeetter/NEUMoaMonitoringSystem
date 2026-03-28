@@ -1,4 +1,6 @@
 # NEU MOA Monitoring System
+
+🌐 Live Demo: https://neu-moa-monitoring-system-rho.vercel.app/
 ### Project Overview
 The NEU MOA Monitoring System is a secure, full-stack web application designed to digitize, streamline, and track Memorandums of Agreement (MOAs) between the university and its industry partners. Built to replace manual tracking methods, the system provides a centralized, real-time database where administrators, college faculty, and students can interact with partnership data based on their specific clearance levels. The application ensures data integrity, improves the visibility of document processing pipelines, and provides actionable analytics for university administrators.
 
